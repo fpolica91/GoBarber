@@ -7,7 +7,7 @@ import CreateAppointmentService from '../services/CreateAppointmentService';
 
 appointmentRouter.post('/', async (req, res) => {
   try {
-    const { provider, date } = req.body;
+    const { provider_id, date } = req.body;
     const parsedDate = parseISO(date);
     /**
      * @createAppointmentService already has access to database,
@@ -16,7 +16,7 @@ appointmentRouter.post('/', async (req, res) => {
     const createAppointmentService = new CreateAppointmentService();
     const appointment = await createAppointmentService.execute({
       date: parsedDate,
-      provider
+      provider_id
     });
     return res.json(appointment);
   } catch (error) {
